@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-// const models = require('../db').models;
-// const User = models.User;
+const models = require('../models');
+const User = models.User;
 
 const redirect = (res) => {
   return () => {

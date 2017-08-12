@@ -28,11 +28,9 @@ app.use('/users', require('./routes/users'));
 
 // handle errors
 app.use((err, req, res, next) => {
+  // console.error(err.stack);
+  // res.status(err.status || 500).send(err.message || "Internal Error");
   res.render('error', { error: err });
 });
 
-// server setup + db synchronize/seed
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`acme-mentors-pg listening on ${port}...`);
-});
+module.exports = app;
