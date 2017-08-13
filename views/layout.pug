@@ -20,6 +20,9 @@ html(lang='en')
           h1 Acme Users #[small mentors!]
 
         ul.nav.nav-pills
-
+          li(class = (nav === 'home' ? 'active' : ''))
+            a(href='/') Home
+          li(class = (nav === 'users' ? 'active' : ''))
+            a(href='/users') Users
 
         block content

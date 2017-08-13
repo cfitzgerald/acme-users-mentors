@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 module.exports = (User, Award) => {
   let shrimply, minotaur, testy;
   return Promise.all([
@@ -6,14 +8,13 @@ module.exports = (User, Award) => {
     User.create({ name: 'Testy McGee' })
   ])
     .then(([ _shrimply, _minotaur, _testy ]) => {
-      // console.log('_shrimply = ', _shrimply);
       shrimply = _shrimply;
       minotaur = _minotaur;
       testy = _testy;
       return Promise.all([
-        Award.create({ recipientId: shrimply.id, description: 'Most Important Being in the Galaxy' }),
-        Award.create({ recipientId: minotaur.id, description: 'A-Maze-ing!' }),
-        Award.create({ recipientId: testy.id, description: 'Participation Award' }),
+        Award.create({ description: 'Most Important Being in the Galaxy', userId: shrimply.id }),
+        Award.create({ description: 'A-Maze-ing!', userId: minotaur.id }),
+        Award.create({ description: faker.company.catchPhrase(), userId: testy.id })
       ]);
     })
     .then(([ shrimplyAward, minotaurAward, testyAward ]) => {
@@ -25,6 +26,5 @@ module.exports = (User, Award) => {
         minotaurAward,
         testyAward
       };
-    })
-    .catch(console.error);
+    });
 };

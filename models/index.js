@@ -1,12 +1,12 @@
 const db = require('./db');
+
+// models
 const User = require('./User');
 const Award = require('./Award');
 
 // associations
-Award.belongsTo(User, { as: 'recipient' });
-User.hasMany(Award);
-// User.hasOne(User, { as: 'mentor' });
-// User.belongsTo(User, { as: 'mentee '});
+User.hasMany(Award); // userId on Awards table
+User.belongsTo(User, { as: 'mentor' }); // mentorId on Users table
 
 // sync
 const sync = () => {
@@ -20,8 +20,7 @@ const seed = () => {
 
 // exports
 module.exports = {
-  User,
-  Award,
+  models: { User, Award },
   sync,
   seed
 };

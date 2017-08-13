@@ -53,4 +53,5 @@ router.delete('/:userId/awards/:id', (req, res, next) => {
     .catch(next);
 });
 
+// exports
 module.exports = router;
