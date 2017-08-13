@@ -5,8 +5,8 @@ const User = require('./User');
 const Award = require('./Award');
 
 // associations
-// User.hasMany(Award); // userId on Awards table
-// User.belongsTo(User, { as: 'mentor' }); // mentorId on Users table
+User.hasMany(Award); // userId on Awards table
+User.belongsTo(User, { as: 'mentor' }); // mentorId on Users table
 
 // sync
 const sync = () => {

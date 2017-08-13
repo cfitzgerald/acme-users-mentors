@@ -23,9 +23,9 @@ User.findUsersViewModel = () => {
 };
 
 // User.create(req.body)
-User.create = (user) => {
+// User.create = (user) => {
 
-};
+// };
 
 // User.destroyById(req.params.id)
 User.destroyById = (id) => {
