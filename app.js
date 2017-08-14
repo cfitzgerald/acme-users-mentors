@@ -28,7 +28,7 @@ app.use('/users', require('./routes/users'));
 
 // handle errors
 app.use((err, req, res, next) => {
-  // console.error(err);
+  console.error(err);
   // res.status(err.status || 500).send(err.message || "Internal Error");
   res.render('error', { error: err });
 });
