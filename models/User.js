@@ -17,10 +17,10 @@ const User = db.define('user', {
 User.findUsersViewModel = () => {
   return User.findAll({ // w/ eager loading to get associations
     // if the assocation is aliased (using the as option), you must specify this alias
-    include: [
-      { model: User, as: 'mentor' },
-      { model: db.models.Award }, // pulling in from index.js -> models: { User, Award } export?
-    ]
+    // include: [
+    //   { model: User, as: 'mentor' },
+    //   { model: db.models.Award }, // pulling in from index.js -> models: { User, Award } export?
+    // ]
   })
     .then( (users) => {
       console.log('findUsersViewModel results = ', users);

@@ -20,7 +20,7 @@ app.set('view engine', 'pug'); // set 'view engine' to specify pug
 
 // handle the root route
 app.get('/', (req, res, next) => {
-  res.render('index');
+  res.render('index', { nav: 'home' });
 });
 
 // handle routes to users.js
