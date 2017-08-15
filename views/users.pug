@@ -19,6 +19,19 @@ block content
               form(method='POST' action='/users/' + user.id + '?_method=DELETE')
                 button.btn.btn-danger.btn-sm Delete User
           div.panel-body
-            div.form-group
-              form(method='POST' action='/users/' + user.id + '?_method=DELETE')
-                button.btn.btn-danger.btn-sm Delete User
+            form(method='POST' action='/users/' + user.id + '/awards')
+              button.btn.btn-primary.btn-sm Award This User!
+
+            if user.awards.length > 0
+              ul
+                each award in user.awards
+                  li.award #{award.description}
+                    form(method='POST' action='/users/' + user.id + '/awards/' + award.id + '?_method=DELETE')
+                      button.btn.btn-warning.btn-xs Delete Award
+
+            form.well(method='POST' action='/users/' + user.id + '?_method=PUT')
+              div.form-group
+                select.form-control(name='mentorId')
+                  option(value='0' selected='true') -- Select --
+                  option(value='1') Test!
+              button.btn.btn-primary.btn-sm Select A Mentor

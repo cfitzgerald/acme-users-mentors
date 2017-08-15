@@ -50,3 +50,11 @@ ul.list-group {
   background-color: #eee;
   color: #f0ad4e;
 }
+
+.award {
+  list-style: decimal;
+}
+
+.award button {
+  margin-top: 5px;
+}
