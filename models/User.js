@@ -3,7 +3,7 @@ const Sequelize = db.Sequelize;
 
 const faker = require('faker');
 
-// const Award = require('./award');
+// const Award = require('./award'); // can use db.models.award instead
 
 const User = db.define('user', {
   name: {
@@ -24,7 +24,13 @@ User.findUsersViewModel = () => {
   })
     .then( (users) => {
       // console.log('findUsersViewModel results = ', users);
-      return users;
+      // filter mentors from users object
+      // user has at least two awards
+      // mentor can't be the user...
+      mentors = users.filter(user => {
+        return user.awards.length >= 2;
+      })
+      return { users, mentors };
     });
 };
 
@@ -35,7 +41,9 @@ User.destroyById = (id) => {
 
 // User.updateUserFromRequestBody(req.params.id, req.body)
 User.updateUserFromRequestBody = (id, body) => {
-  return User.update({ }, { });
+  console.log('id = ', id);
+  console.log('body = ', body);
+  return User.update({ mentorId: body.mentorId }, { where: { id: id }});
 };
 
 // User.generateAward(req.params.id)

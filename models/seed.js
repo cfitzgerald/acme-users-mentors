@@ -15,17 +15,19 @@ module.exports = (User, Award) => {
       scroopy = _scroopy;
       return Promise.all([
         Award.create({ description: 'Most Important Being in the Galaxy', userId: shrimply.id }),
+        Award.create({ description: faker.company.catchPhrase(), userId: shrimply.id }),
         Award.create({ description: 'A-Maze-ing!', userId: minotaur.id }),
         Award.create({ description: faker.company.catchPhrase(), userId: scroopy.id })
       ]);
     })
-    .then(([ shrimplyAward, minotaurAward, scroopyAward ]) => {
+    .then(([ shrimplyAward1, shrimplyAward2, minotaurAward, scroopyAward ]) => {
       return {
         shrimply,
         minotaur,
         testy,
         scroopy,
-        shrimplyAward,
+        shrimplyAward1,
+        shrimplyAward2,
         minotaurAward,
         scroopyAward,
       };

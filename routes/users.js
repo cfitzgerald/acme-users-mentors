@@ -12,8 +12,8 @@ const redirect = (res) => {
 // READ
 router.get('/', (req, res, next) => {
   User.findUsersViewModel()
-    .then(users => {
-      res.render('users', { nav: 'users', users });
+    .then(viewModel => {
+      res.render('users', { nav: 'users', viewModel });
     })
     .catch(next);
 });

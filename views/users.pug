@@ -1,5 +1,6 @@
 extends layout
 
+//- viewModel = { users, mentors }
 block content
 
   form.well.well-lg(method='POST' action='/users')
@@ -10,7 +11,7 @@ block content
           button.btn.btn-success Add User
 
   div.row
-    each user in users
+    each user in viewModel.users
       div.col-sm-3
         div.panel.panel-default
           div.panel-heading
@@ -22,16 +23,25 @@ block content
             form(method='POST' action='/users/' + user.id + '/awards')
               button.btn.btn-primary.btn-sm Award This User!
 
-            if user.awards.length > 0
+            if user.awards
               ul
                 each award in user.awards
                   li.award #{award.description}
                     form(method='POST' action='/users/' + user.id + '/awards/' + award.id + '?_method=DELETE')
                       button.btn.btn-warning.btn-xs Delete Award
 
-            form.well(method='POST' action='/users/' + user.id + '?_method=PUT')
-              div.form-group
-                select.form-control(name='mentorId')
-                  option(value='0' selected='true') -- Select --
-                  option(value='1') Test!
-              button.btn.btn-primary.btn-sm Select A Mentor
+            if user.mentor
+              div.well
+                div.label.label-default Mentor: #{user.mentor.name}
+                p
+                form(method='POST' action='/users/' + user.id + '?_method=PUT')
+                  input(type='hidden' name='mentorId' value='')
+                  button.btn.btn-warning.btn-sm Remove Mentor
+            else
+              form.well(method='POST' action='/users/' + user.id + '?_method=PUT')
+                div.form-group
+                  select.form-control(name='mentorId')
+                    option(value='0' selected='true') -- Select --
+                    each mentor in viewModel.mentors
+                      option(value=mentor.id) #{mentor.name}
+                button.btn.btn-primary.btn-sm Select A Mentor
