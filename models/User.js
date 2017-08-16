@@ -41,8 +41,14 @@ User.destroyById = (id) => {
 
 // User.updateUserFromRequestBody(req.params.id, req.body)
 User.updateUserFromRequestBody = (id, body) => {
-  console.log('id = ', id);
-  console.log('body = ', body);
+  // console.log('id = ', id);
+  // console.log('body = ', body);
+
+  // using the conditional below because setting input value to an emptry string in pug leads to...
+  // SequelizeDatabaseError: invalid input syntax for integer: ""
+  if (body.mentorId === '') {
+    body.mentorId = null;
+  }
   return User.update({ mentorId: body.mentorId }, { where: { id: id }});
 };
 
