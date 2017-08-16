@@ -43,5 +43,8 @@ block content
                   select.form-control(name='mentorId')
                     option(value='0' selected='true') -- Select --
                     each mentor in viewModel.mentors
-                      option(value=mentor.id) #{mentor.name}
+                      if mentor.id != user.id
+                        option(value=mentor.id) #{mentor.name}
+                      else
+                        option(value=mentor.id disabled) A User Can't Be Their Own Mentor!
                 button.btn.btn-primary.btn-sm Select A Mentor

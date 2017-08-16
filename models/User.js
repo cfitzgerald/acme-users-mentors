@@ -49,6 +49,10 @@ User.updateUserFromRequestBody = (id, body) => {
   if (body.mentorId === '') {
     body.mentorId = null;
   }
+  // pug handles the select options, but to be safe, I also don't want a user to be set as their own mentor here
+  if (id === body.mentorId) {
+    body.mentorId = null;
+  }
   return User.update({ mentorId: body.mentorId }, { where: { id: id }});
 };
 
