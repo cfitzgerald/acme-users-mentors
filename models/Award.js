@@ -6,6 +6,15 @@ const Award = db.define('award', {
     type: Sequelize.STRING,
     allowNull: false
   }
+}, {
+  hooks: {
+    beforeDestroy: () => {
+
+    },
+    afterDestroy: () => {
+
+    },
+  }
 });
 
 // exports
